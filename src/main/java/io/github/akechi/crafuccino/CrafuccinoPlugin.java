@@ -26,7 +26,7 @@ public class CrafuccinoPlugin extends JavaPlugin implements Listener {
       java.io.Reader in = new java.io.FileReader(new java.io.File("js/a.js"));
       Object result = cx.evaluateReader(
           scope, in, "js/a.js", 1, null);
-      System.out.print(result);
+      System.out.println(result);
     } catch (java.io.FileNotFoundException e) {
       e.printStackTrace();
     } catch (java.io.IOException e) {
@@ -36,6 +36,11 @@ public class CrafuccinoPlugin extends JavaPlugin implements Listener {
 
     PluginManager pm = Bukkit.getPluginManager();
     pm.registerEvents(this, this);
-    System.out.print("ok!");
+    System.out.println("ok!");
+  }
+
+  @EventHandler
+  public void onPlayerLoginEvent(org.bukkit.event.player.PlayerLoginEvent evt) {
+    System.out.println("(java) hi, " + evt.getPlayer().getName() + "!");
   }
 }
