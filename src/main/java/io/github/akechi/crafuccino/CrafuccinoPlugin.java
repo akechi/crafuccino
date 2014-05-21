@@ -1,32 +1,41 @@
-package io.github.akechi.crafuccino.CrafuccinoPlugin;
+package io.github.akechi.crafuccino;
 
 import org.mozilla.javascript.Context;
 import org.mozilla.javascript.Scriptable;
+import org.bukkit.Bukkit;
+import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.plugin.PluginManager;
+import org.bukkit.event.Listener;
+import org.bukkit.event.EventHandler;
 
-public class CrafuccinoPlugin {
+public class CrafuccinoPlugin extends JavaPlugin implements Listener {
   Context cx;
 
-  public static void main(String[] args) {
-    try {
-      new CrafuccinoPlugin().f();
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-  }
+    //
+    // String s = "a.test()";
+    // result = cx.evaluateString(scope, s, "<cmd>", 1, null);
+    //
+    // System.out.print(result);
 
-  // just for now
-  public void f() throws java.io.FileNotFoundException, java.io.IOException {
+  @Override
+  public void onEnable() {
     this.cx = Context.enter();
     Scriptable scope = this.cx.initStandardObjects();
 
-    java.io.Reader in = new java.io.FileReader(new java.io.File("js/a.js"));
-    Object result = cx.evaluateReader(
-        scope, in, "js/a.js", 1, null);
-    System.out.print(result);
+    try {
+      java.io.Reader in = new java.io.FileReader(new java.io.File("js/a.js"));
+      Object result = cx.evaluateReader(
+          scope, in, "js/a.js", 1, null);
+      System.out.print(result);
+    } catch (java.io.FileNotFoundException e) {
+      e.printStackTrace();
+    } catch (java.io.IOException e) {
+      e.printStackTrace();
+    }
 
-    String s = "a.test()";
-    result = cx.evaluateString(scope, s, "<cmd>", 1, null);
 
-    System.out.print(result);
+    PluginManager pm = Bukkit.getPluginManager();
+    pm.registerEvents(this, this);
+    System.out.print("ok!");
   }
 }

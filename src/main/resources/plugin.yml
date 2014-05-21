@@ -1,0 +1,10 @@
+name: crafuccino
+main: io.github.akechi.crafuccino.CrafuccinoPlugin
+version: 1.0
+website: http://ujihisa.blogspot.com
+author: Tatsuhiro Ujihisa
+description: ask @ujm
+# commands:
+#   s:
+#     description: everything about sugoicraft
+#     usage: /s [subcommand]
