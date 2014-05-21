@@ -1,7 +1,9 @@
 var a = {};
+var Bukkit = org.bukkit.Bukkit;
 
 a.PlayerLoginEvent = function(evt) {
-	print('%s logged in!'.replace('%s', evt.getPlayer().getName()));
+	var player = evt.getPlayer()
+	Bukkit.broadcastMessage('%s logged in!'.replace('%s', player.getName()));
 };
 
 a.test = function() {
