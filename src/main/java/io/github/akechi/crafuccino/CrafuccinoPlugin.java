@@ -57,4 +57,13 @@ public class CrafuccinoPlugin extends JavaPlugin implements Listener {
     if (f instanceof Function)
       ((Function)f).call(this.cx, a, a, args);
   }
+
+  @EventHandler
+  public void onPlayerToggleSprintEvent(org.bukkit.event.player.PlayerToggleSprintEvent evt) {
+    Scriptable a = (Scriptable)this.scope.get("a", this.scope);
+    Object[] args = {evt};
+    Object f = a.get("PlayerToggleSprintEvent", a);
+    if (f instanceof Function)
+      ((Function)f).call(this.cx, a, a, args);
+  }
 }
