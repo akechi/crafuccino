@@ -51,11 +51,10 @@ public class CrafuccinoPlugin extends JavaPlugin implements Listener {
 
   @EventHandler
   public void onPlayerLoginEvent(org.bukkit.event.player.PlayerLoginEvent evt) {
-    System.out.println("(java) hi, " + evt.getPlayer().getName() + "!");
-
     Scriptable a = (Scriptable)this.scope.get("a", this.scope);
     Object[] args = {evt};
-    Function f = (Function)a.get("PlayerLoginEvent", a);
-    System.out.println(f.call(this.cx, a, a, args));
+    Object f = a.get("PlayerLoginEvent", a);
+    if (f instanceof Function)
+      ((Function)f).call(this.cx, a, a, args);
   }
 }
