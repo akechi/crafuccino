@@ -1,2 +1,2 @@
 #!/bin/bash -xe
-sbt package
+sbt assembly
