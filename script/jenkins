@@ -1,6 +1,5 @@
 #!/bin/bash -xe
-X=`git diff --name-only $GIT_PREVIOUS_COMMIT | grep src`
-if [ $X ]; then
+if [ `git diff --name-only $GIT_PREVIOUS_COMMIT | grep src` ]; then
   sbt assembly
 else
   echo 'No changes in src. Skipping build.'
