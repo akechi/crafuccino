@@ -1,5 +1,5 @@
 #!/bin/bash -xe
-X=`git diff --name-only ORIG_HEAD^..HEAD | grep src`
+X=`git diff --name-only $GIT_PREVIOUS_COMMIT | grep src`
 if [ $X ]; then
   sbt assembly
 else
