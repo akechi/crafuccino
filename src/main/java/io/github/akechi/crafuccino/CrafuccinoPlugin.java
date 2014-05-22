@@ -12,6 +12,7 @@ import org.bukkit.event.EventHandler;
 public class CrafuccinoPlugin extends JavaPlugin implements Listener {
   Context cx;
   Scriptable scope;
+  java.util.logging.Logger log;
 
     //
     // String s = "a.test()";
@@ -23,6 +24,7 @@ public class CrafuccinoPlugin extends JavaPlugin implements Listener {
   public void onEnable() {
     this.cx = Context.enter();
     this.scope = this.cx.initStandardObjects();
+    this.log = this.getLogger();
 
     try {
       java.io.Reader in = new java.io.FileReader(new java.io.File("js/a.js"));
@@ -39,6 +41,7 @@ public class CrafuccinoPlugin extends JavaPlugin implements Listener {
     PluginManager pm = Bukkit.getPluginManager();
     pm.registerEvents(this, this);
     System.out.println("ok!");
+    this.scope.put("log", this.scope, this.log);
 
     Scriptable a = (Scriptable)this.scope.get("a", this.scope);
     Function f = (Function)a.get("test", a);
